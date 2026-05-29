@@ -1,23 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import useAuthStore from './store/authStore'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
 import './App.css'
 
 function App() {
+  const initialize = useAuthStore((state) => state.initialize)
+
+  useEffect(() => {
+    initialize()
+  }, [])
+
   return (
     <Router>
-      <div className="app">
-        <h1>UPSC Preparation Platform</h1>
-        <p>Welcome to your comprehensive UPSC exam preparation platform</p>
-        
-        <Routes>
-          {/* TODO: Add routes */}
-          <Route path="/" element={<div>Home Page</div>} />
-          <Route path="/materials" element={<div>Study Materials</div>} />
-          <Route path="/current-affairs" element={<div>Current Affairs</div>} />
-          <Route path="/videos" element={<div>Videos</div>} />
-          <Route path="/questions" element={<div>Questions</div>} />
-          <Route path="/progress" element={<div>Progress</div>} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </Router>
   )
 }
