@@ -38,11 +38,11 @@ function Dashboard() {
         </div>
 
         <div className="features-grid">
-          <div className="feature-card">
+          <div className="feature-card" onClick={() => navigate('/materials')}>
             <div className="feature-icon">📖</div>
             <h3>Study Materials</h3>
             <p>Upload and organize your study materials</p>
-            <button className="feature-btn">Coming Soon</button>
+            <button className="feature-btn">Open →</button>
           </div>
 
           <div className="feature-card">
